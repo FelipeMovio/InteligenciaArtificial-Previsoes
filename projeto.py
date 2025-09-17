@@ -10,7 +10,7 @@ import pandas as pd
 
 tabela = pd.read_csv("./clientes.csv")
 
-# Passo 2 - tratamento de dados / prepara a base de dados para a IA
+# Passo 2 : tratamento de dados / prepara a base de dados para a IA
 
 print(tabela.info())
 # Ver informações da base de dados
@@ -27,3 +27,16 @@ tabela["mix_credito"] = codificador.fit_transform(tabela["mix_credito"])
 
 tabela["comportamento_pagamento"] = codificador.fit_transform(tabela["comportamento_pagamento"])
 
+
+# separar as informações da base de dados para a IA 
+    # separar em X e Y 
+    # Y -> quem eu quero prever (coluna score_credito)
+    # X -> as outras colunas 
+
+y = tabela["score_credito"]        
+x = tabela.drop(columns = ["score_credito","id_cliente"])
+
+# separa em dados de treino e de teste 
+from sklearn.model_selection import train_test_split
+
+x_treino, x_teste, y_treino, y_teste = train_test_split(x,y, test_size=0.3)
