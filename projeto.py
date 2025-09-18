@@ -63,6 +63,8 @@ previsa_knn = modelo_knn.predict(x_teste)
 
 from sklearn.metrics import accuracy_score
 
+
+# Ver a porcentagem de acerto 
 print(accuracy_score(y_teste, previsao_arvoredecisao))
 print(accuracy_score(y_teste, previsa_knn))
 
