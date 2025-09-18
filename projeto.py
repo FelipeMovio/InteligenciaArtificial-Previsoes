@@ -53,3 +53,17 @@ modelo_knn = KNeighborsClassifier()
 
 modelo_arvoredecisao.fit(x_treino, y_treino)
 modelo_knn.fit(x_treino, y_treino)
+
+
+# Passo 4 : Escolher o melhor modelo 
+
+previsao_arvoredecisao = modelo_arvoredecisao.predict(x_teste)
+
+previsa_knn = modelo_knn.predict(x_teste)
+
+from sklearn.metrics import accuracy_score
+
+print(accuracy_score(y_teste, previsao_arvoredecisao))
+print(accuracy_score(y_teste, previsa_knn))
+
+# Melhor modelo é o de arvore de decisao 
