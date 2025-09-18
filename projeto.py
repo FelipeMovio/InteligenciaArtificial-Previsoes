@@ -12,8 +12,8 @@ tabela = pd.read_csv("./clientes.csv")
 
 # Passo 2 : tratamento de dados / prepara a base de dados para a IA
 
-print(tabela.info())
-# Ver informações da base de dados
+#print(tabela.info())
+    # Ver informações da base de dados
 
 # LabelEncoder
 # Transformando valores na base de dados que sao objetos/textos em numeros 
@@ -67,3 +67,18 @@ print(accuracy_score(y_teste, previsao_arvoredecisao))
 print(accuracy_score(y_teste, previsa_knn))
 
 # Melhor modelo é o de arvore de decisao 
+    # modelo_arvoredecisao
+
+# Passo 5 : Fazer novas previsões 
+
+tabela_nova = pd.read_csv("./novos_clientes.csv")
+
+tabela_nova["profissao"] = codificador.fit_transform(tabela_nova["profissao"])
+
+tabela_nova["mix_credito"] = codificador.fit_transform(tabela_nova["mix_credito"])
+
+tabela_nova["comportamento_pagamento"] = codificador.fit_transform(tabela_nova["comportamento_pagamento"])
+
+previsao = modelo_arvoredecisao.predict(tabela_nova)
+
+print(previsao)
